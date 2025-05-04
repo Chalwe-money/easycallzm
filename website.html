@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyCall Zambia - Professional Call Center Services</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --red: #C8102E;
+      --black: #000000;
+      --white: #FFFFFF;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .bg-brand-red {
+      background-color: var(--red);
+    }
+    
+    .text-brand-red {
+      color: var(--red);
+    }
+    
+    .border-brand-red {
+      border-color: var(--red);
+    }
+    
+    .btn-red {
+      background-color: var(--red);
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-red:hover {
+      background-color: #A50020;
+      transform: translateY(-2px);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card {
+      transition: all 0.3s ease;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--red);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md fixed w-full z-10">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <span class="text-2xl font-bold text-brand-red">EasyCall</span>
+          <span class="text-2xl font-bold ml-1">Zambia</span>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#pricing" class="nav-link">Pricing</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="focus:outline-none">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="md:hidden hidden">
+        <div class="px-2 pt-2 pb-4 space-y-1 text-center">
+          <a href="#home" class="block px-3 py-2 rounded-md hover:bg-gray-100">Home</a>
+          <a href="#services" class="block px-3 py-2 rounded-md hover:bg-gray-100">Services</a>
+          <a href="#pricing" class="block px-3 py-2 rounded-md hover:bg-gray-100">Pricing</a>
+          <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-gray-100">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Professional Call Center Services – EasyCall Zambia</h1>
+          <p class="text-xl text-gray-600 mb-8">Get reliable directory and call center services for your business.</p>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#services" class="btn-red px-8 py-3 rounded-md text-center font-medium shadow-lg">
+              Our Services
+            </a>
+            <a href="#contact" class="border-2 border-brand-red text-brand-red px-8 py-3 rounded-md text-center font-medium hover:bg-gray-50 transition-colors">
+              Contact Us
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <!-- Real image of call center workers -->
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAQCAwMDAgQDAwMEBAQEBQkGBQUFBQsICAYJDQsNDQ0LDAwOEBQRDg8TDwwMEhgSExUWFxcXDhEZGxkWGhQWFxb/2wBDAQQEBAUFBQoGBgoWDwwPFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhb/wAARCAFNAZADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4q0VBcX6Rt8vzBRj3NXtRmjsZJI9vzbdx9cY5Nc94a1d4dRKyWZljRsCTdg9eB7V2K6nDdK3mQSQO/wDzyYFT74NfJVKiTPqqNNNGQ2rQTKu2RmKnj5c81ieI5jLCY4wZGkO0fLzkmujuVhjiKxyTSFumQcVlj91NGskijPYnJJA4GPXng1MPaSlyvYc3CKPY/gF8NrHSPhPp2p+VG13qQWaZ8ZO1hkAn04FfRXhbw5YXRiSG3jmSNQkgJ+9x0NeEfs9+Kre98P2+nwkTTWoDPHIeWUL047cAEEe1e/8Ah7WBp96kTuJIZTtdScbSe/4ivoa0qk0udbnhunGLaR0V34JigtftEkOFzuYE9B3rg/GvjW08KW8n2SGSa4VcMEXcqDPGSOhPpXZeKvFEOjaYxVsSSZWP1J7c188+JtXn8QajLI+GGcqm7pjpn3qKMZSbcjeVOMdDj/FXiS58Q3LXNw2xMlY0P8CDoAemfUmuc1DUGVGjjkKSL36+9XPEk5huT5YaOTgBj1Geuawf7QmOoRxqG3FhuAUjA9TnrXptKFO8TFNyn7x02l2Pmy2t5GzQxsSMfd5OQfbqOnWuqn8R/wBj6fDYWJFw87bZG54wQ2Mds8c1zuk3q+TbKXGFUmQOPUYAP0qSz1L7TqbH5RtYhMdDnHP8q4pRjdO5vCXZmxJcSI8klyZJGjG5BGMFj0yR0xjn/Gqt1NJLcI5Yxx+XwuMZ9APyFUNQ1p2UxFshipdV6j+v5VnS6mRZCWZiW3YGOT9PbFaQhzNE1Klkel/DXwZBqFkmu6u3+iocQxFs+YQBknP8K8cd2GPQ1DqlnZz6pcNDF5EEMpVWJ3fKMcgZzk9PrXlVp4mvYZ1hWaW1jPDGJyB+XX866XT9anC/vJzcAY2lySwz3z3HrRUw8oLmel9onv8A4T0qTTdNW4utqyMRsQD7q+/1rb/tCXyliZ8llyxzjn0/wryvw14rMsTxGRfMAxg9fbpXRwarbzNFGZMbRnrXi16fLLU6qcvaLU7q31S4VcqwjVecE5qSLXLqFjnLAn7pXIA9elcst/bl9rSLtJ44/nUlzqMPlqY3yqrkkc5Nc/1dzVi3hle7Ognvru4lYoEi3cnaOR+tU5ZpOVMjOvesjT9WjuZOJEUMcfMcVrzXVq0QKzDcD0HtV/V5JaslYfvoMbRzJKTFcMRnqcYxWpCrQx4KEOw4UHk/4VxeqtMrZR2wRktuyR9a1PDt80mZpZWlcHJYnqKxqYeXLa+g4YmLlovQ6W5sYWtvPjbcoxuLn+VPijgmt0YOEj29QazNR8SxRypFHJwD1HWp/wC1FurSJUk+faBheB+Nc8aPJ8TOj2kZqyNBtNs/IMaOE+XnNefeNvAFpqlnIIlMUw5DKOCfbFd3YCCSR45JMSdMDv7GrwMCBon27ieN2OlPD15UZcyOaslURl/DT4ay6Lp0cdxMZpjyQDlFPoMcmvQP7DsRAqrBCFUYBJ5qvYXMeizfaJIzLGpHI+8vvitKbXYLwQjy1Ehzw3T3r0HiJVpXucToxhs9ThdU0FbctskVSO5cDn2rhPGehLINzCPCdAnJ/Gu+8T6gIdysmcngYzWJBZpr9nIr7fLUYYKMn8RRTnJSuNPTQ860G2j0fzLmNtskcioq5+XJyc/pWZe+IyuqXEsm77OXJA/u5xj9K6LVtCFjpi+W2JMgOqnAHtxXEavCz3CtGA4YfMWJCgdMH8q74VFU0OWVLlVzeF+slg06SbGkUZGeSOMf4VjRjdIW2nDHcFB6iiyi86EQ+YcbPvqME98EZp3nLb5zzEDgDsT+tdMYtWSRlKSW5YsrA3Eiq3Qk89sDtXtHw+8Hw2+nrNewyRySA5z0AOM8+teKeF9Wmt71JN21Af4uAa+g/DWrLqNlGyyeYo5IU8EDtWGKk46I2oxvdkunaJF57SW8RicD7h6Z9K14dMR1YOFZSMqw5P4GrdnMJ5VyNrLz7VYmi8xCi8N0/CvK5m5bs9GMUloZ1noiNhlJRh1rnfFnw70/XELxn7PMBw6jrXcQ2zBdkh/A1G9j+6O9SxA5zXTSryg7pmcqcZrVHz54o+FGr6GrXNiRdwg5ynd1J4YD+tfNnx4sIZPE0JwN7KCcf417v8QPj94b+FemXd94g1CGKOOQRhN3zyMeAoA5JzXyJ8S/GFz8QfGGoasjFI5ZCIlP8K9APyr73JMTKrG8nqfH5phoU3ZLY5iiiivrD5YKKKKACiivQvhp8C/Efxevre+0qFbTS5WAGoXR2q2f+eLfekOfQYHqaSjKcuWKu2VGMpO0VdnJaB4d1PxVqsOl6RZTXt5OfljhjLMfUnA4A7k8Cv0P/AGev2GkspLPxH48hVpRta20nG4D0Mr9CfZePft0Ph/8AZh+Hvwt0stougwfbGX/j9v8Aa9zKfXcwyB/ujFejjagAKg4HYV42IzCMfchqzupYKU25z0Rr2E0MVukSKAiDAUdBVW81CSK9jJ2hWbBA5yR0qokgUhpB5ca/eZuMVy3ibx3HHGZI4jIwOERefwFecoTne3Q2ThCN3ueZ/tIaONLGm+ILPM9jMxjnYD7jDrn04wfqB6V4rZ6/HLfKsjNKCCDhgOf8K+k/DGoN450CbT5Sptbg/uHJyyt3B9f8Ca+Xtatrnwh4wurG9BMkMrBmXqwzwR74INezhK0WnTlujx8bQbSlHZ7n078KtVtdY0/+1jOsflgK0Uj48tcc4PPTpgV61Z3j21ukrTmMA4Z2JAAHsTXwr4X+K1zpt8fLumdYVGVP3X5z16eg/GvoX4e/Hn/hIdMeO+tmuJrdQskVwvlMR24OQQMjnvXXOjLDw5o6mtGSrx5WrH0dofjXTPE2gxPb3sVxCyBnVWyRx3Hf8K+evjD44XXNWkjjYkgkEnqcnj9BWf4f8atZa2t9psxfT5HZRKrbWYjqAD14P61yfxE1SW81lZrhuHOVXb8qjsB+FYYajKck2rHROShG19Thdfv5gPMVGkDNtYE4wfT3z3rgr3Vp4L4yz4k55UL0HpXV+I78pcOZZhCoOGZXAx07Z71yE96LqNkaXzpGOWbnkegA7V7k/ZxldvU8dOc9EZM+rXMN/K/nbmcnYm7jGc1TlmuL4LDJNuX7xB43Z65/yKu31lb3EW4M5YE7VHJOOuKy/sd1HdxGQjyGT5o+CQeuTXMnLm0NpOKjoWbGzOkxSKQGbqRnk/8A6q6zSNPiubWOZXIIPTdg+mMdaqaZ4JvNUgjRvlVlz5iDn6jPStOXwpqGjRmWNvlzyw+9+Vb8tOSvLYl+0g7RMrVNNmglZSwMZ5AB/pVrTLMJDu3nngAng1FPG0q7ZI8gHGR61rWrLHbQxvw5GcnuKxqTi42OqFFveR0nhjU5tICpFNukGC3p+Fd3Hrl3JFnDqe5x1rz0Wk0hGyEmIcAAdBW/4fFxMJFdWPIwwPevMrU4tu+x6FGpKKVzspL64aH5o857irGnJLMvyrlQee1aUelw3NttlRpG64HArXstMhtGUyAKPSvL9o4t2O1JTSuXNLkCDa3XHerTXG2QnHXnpVN5E3/dwapy6kI3YSdPWsndq7HZ31NEXjP3PNFrqSqW81PmPQg1lrqaRyqS2Xzx2rXh1K2nXCkKOxrOU1y3LhB30NU3UeoweWu1l4IPFVLnUra33Fzx2OOtRy3sNvHuZlblT6Vz/iLVBJavt4GOTVQ9+aIlPli5GlBrCXDOqkg5yQRwPrXMeL/EI0+GVpDvOP3ar1BPFVFvpJLkLCwYAfdFYfi64f7O/RmZsKxP3a9ChTTtY4a1W0Wmcjr3iSKW3aTftRRtdj3J5rzXxL4m+0Y85cSZ5UcKF9q3vFMzSWlzEmXdwcAdvXmvOZJZGjkwPr3r26FCMVdninUlJl+3vGnuCXCCQ8EBicepzTzOEdmkm2KeOf61zUl5JbyEb9vtmnR6uHdlPrXoKklexzyrt9TqbO9l83KOeT/EKnfWbgR7HYFCeQ59ay9MuMLkgj3FWnVpPmB4PpUTpxtaxcasa6s0bDXntkB8wsM4z1/Wuk0T4q3OkMsiyMyn5kOM1xogG78DUd5b/uTtGecEf1rinh4OLSLp4mUXdH0J4f8AjIdVsQCxZscqTk49813Wl/FJdQZUZtpPXI5NfMPhmZ7ZlwWII5Ga9C0+eSOFXHQ5JGeteNXw0IPlS1PUpYmcldnovibxhLcWyQQkeY2CW9B3rmZdGnmcySIqO54Lc4rMF9JLI00p+8cfSuh0W5e6VIfKZi3Q4OAfpXLBOPutWO2TSd4u5W/sqS3I3Rq0fQsvbjrXNa/pUMUJ3hlKtuwxGcetehz6Q0UeRksOuT2rjfEVm88Z8xMM3X5q6sNVctmc+IoRirpH5RUUUEgDJOBX6MfiYUUUUySe0sneXYkbO5OAqjJNfdfwF/ZN8GeEPCMHiDxTp0Op6zLGHSKddy28Z/g2njdjq2c9cYr5u+BXhf8A4TL4g6RZyRFoFmEkuRwFU5P6gAe5Ffpro8FtbabAtvGkUaRjCIMKoxyMflXhZpiPC5Us/wAT3Mpw3M3Val22tbWwtfLgiWKNBtCqMAAVJLGZY9oZlYnGRSsyqoPcDvVedyZFiXt1/CvijA1rZXs123EW/gMx4z/ntXnniLw23i3VnguJUSDdkLjJz6AV6ZJYtdRmT7sZPBPU4rDkSUbooY2Tdxu4C9s1tQm4S0IqRUrWPmH9oLwDpPhPW/D8ljBsTUf9HP8AdDjOD9SGB/Cvmzxn4PurCRZhF9psnO6OVRnGOxH8LDuD+dfbvxRkTVJ9PdnQvHu2hvqOfw5r5/8AHdrY29q73EqwN0L4yV9j6j3r6HDYhOHLLc8qvQaldbaHlOj+GdQ1oFredY1J+/KCAD7jPNdj4f8AhBrF1dqrXUMkbHPmLLlT9CB/OuY1HxjJHKYrH2wR2/EGtzw54tvrPYjQO8ZOM+X29/Su2pTcre8ckZxeu52138NZNEEksEkkx2HDxrkY+h6fSvPPFGl3elyeesTNFJn5ygAzzXqmj+KnvLVLW5iMUq8blO0kfT+tbTXFhrWlyQyW8FzDMpQhlDKcdOvHvWMFOCvDUuc4y0Z8w3FzIYJfLkLuhPOeR9fWqEmuSXlvLDKxMbD5lAx+fWvRvEHwauoHebTIlM3DSQIAqsMdVI49sVw974R1SwlYTWMnyjO4DI/P0rvhXw8l7xzSp1E/dMGPTbq4jwkLnPJJBwP1rSsLeztJMXE4V+PkJyxqK30+8WdmNpMIxznYf8Kt2+gLK++6UcDOCMDPt3q5VnJe5GxMacYv3pXPRPhpqsUd2IllyVTe+4YyP4h+PFembXSNVl/iGecda8g8KW1vYXYSMYUrgkdTXot3qbQwxrDhsLjn1rzqz9+V0ehT/d00maFleKzbeMAbvUVYKOsq4O5fTHaubttUWCVvNmAY4yvtWk+uQiPKyA5PAB9q5OVp6s2vFK6R01pqz4+RgynjBPNS/wBrSW7PvfPykfL1rltA1RbmcqpyW4yRwPeultLeK5s45PvSdDmspQundamsZqVrMy5PET20oaOT8jnFbOm+PJLKJZI5N65zyODTLLwRd3jKc/L1DGti3+G9n5u9yZGYckmmq1KL1YnTqNaI0IfiBFd2Srhgccnsc1nXXjuaC/KtI2HO3aO1dB/wiOnwQKscMasM84z+dYl74e06Fp2MLK8YJUDvn606c6doimoN3ZVXx5czSJsYkE4PpTLzx/JZSp5j5UdTWDrNhZpK5t/l9ByQaxpNAmuzkkue8rDPNawp0JO8kZ1KlaMbRZrX3jx9Qut0bYxySPTNXNF8QNrEylmdY1O3PQtjua5mz8KR+cTLvLZ43DGK6zRbOO0h2xKq4HY1nOdKK5YI2hCrN801Y3rO/t5IwHPFP1CW3eFl+bd6ZrEu79bGP5Rzjtms268SxGAljuPUH0rixCfMehBRavY5LxRpzJ5xVfMk+ZQc9a8+1LXLnRy0UwXcGwCBg49frXrVtdw3wEm5QTyPpXknxQsZU1SdLUlx2J5we5r1MBUUlfueNjaclBq3Q5XVNXm1i8+bO3JJBbjPpWnpGhpc2okaE7jwSe1QWPh+5juDHJCw5zhhjn2rqdM8pu2c9Ov1r3Zzle6Z4Macb3a2KTaHZ2Uq4UfMRhSP8aw/GL29tCsKANxgAetdXrFu9vCgSXJ3AjnivP8AxbeCC1LOuS2QMcEV0YWTnNHLi4KMHexxHi+7H2pAOdqjge9c+2oBc8VYv7s3c07KWGScHtism4YhsV9RTppRsfNzm5SuXWvlf3qB7jcvBOaojJHWplQ4qtEQ0yxGzHrWnBOGUPnpWeq4NXISoIB4pPQEbCXDxrtI5PFXtGvnM/lMeM8H0rDa4O0A9qvWL5lBBriqqLgzvpSkpq5611j2qewq3p3iG70tsxPtU9QetZkMoMKnFIy96+dnRjLRn1SnKLuj0zQfinMUEd4qyL/eXg/lXaaT4+0q+UCS4MTn+/x+teEGF16qaYQyHDAqR3BqJYSmyliq0f5mfRkmsWGolpYpFkQDAIPH41nXM8TuMcDqB618u32qaxouVtLqSP8A2c5B/A1ah+IPii1jCNeLdxjtMmSP8/jXJLAa+7K511MSntKNj6Q+0q7xsFOFPWvkv9u2c/8ACVaVATxHYEj6mRv8K9StfjHJDBcG+tXtZoFDRyxHKt3A+orw74/eKo/HfjiPWLYMtvDaqiKx5ILucn8iK93LsHUhiYtu1jxcyxVGeDny6njlFFFfbn5ofQP7JWkiDxJc3ckYKpCFQkfxsQP0wa+69QmS0iGDkxoVX618R/AvUY9Nt7mW4YKA4RTn16kflivprwl4wtfFVl+7cLMM7kJ6H0HtXz+ZRnUnGT2PoMrxEKFGcHue96L9ntNEt1jbdsQA+5Paub8cax5ZngjYKqqFbd2PXPvWPpvi2KxYRM4ULwCfoKm0G2m8Ya5FNchkiAAG75VOe2fXr3rzqbUdT0akZPQr+GvDba5fxTXS/uEOVjzjcevP9K3dX0FNMlOVC7s4UHnHuP512MdtDp9skMKBEQAAelYWpQPeSHt2FdlN3ObZNHGRaNDJb/vQcHseuK8u+K3h1oZmiTJDYIHcEfdr3RI/LhKMecYrj/GWifabZpGUMTjj1I5xVvmg9CYpTWp8X+J9BnS9d1hckDkgc4/xrifEWoXmg2wMhkRhLt+brkdwR+NfTHjHwVBLO32iMnAyrjhgfQ14J8XdDmtrEMkYKqcMoXOD3AA6fSu+hWhNcqOXEYeUXzM4/RvEs9woUuV2nOW4yOtdFY3MckhkVg4H3gp6/Q1wMN5HaXKqzDkdSOld94PtYL2OScbsY+QY/wA+tdNSlZXRhQn732To9+1vOkr/ALpsjGRlTnj9a7zw1YHUIU3GSeIDduYnOfo3P5V5JbxtdXBjTlCSGIPTH0r234cRwPobLMgLZwjj+78vX8jXnYim1Bl4aqqeIjHudNoMEdrEsqhlA4xXXWN5Z3NsGWRF29Cea5LymthgN0OcVNZqXwYmZWHA5ryIyZ9ByJ6o7zSNQt1j2RsMY61BrWtX9mpdGSRH+6ynGKj0+1ZYFMYYNipJdMaTLtHznkMM1rzR5kCpvZ7msX4UzK9r1xjIrN8Ov403yW9/cKhZiI9u8gCuyT9kPwb4
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Our Services</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">We offer top-notch directory and call center services customized to meet your business needs.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Directory Services Card -->
+        <div class="service-card bg-white rounded-lg shadow-lg p-6 transition-all duration-300">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-brand-red mb-6 mx-auto">
+            <i class="fas fa-book text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-center">Directory Services</h3>
+          <p class="text-gray-600 mb-4">
+            Our comprehensive directory services ensure your business is easily discoverable. We maintain an up-to-date database of businesses across various industries, helping potential customers find you quickly and efficiently.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Business listing management
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Category optimization
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Information verification
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Call Center Services Card -->
+        <div class="service-card bg-white rounded-lg shadow-lg p-6 transition-all duration-300">
+          <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-100 text-brand-red mb-6 mx-auto">
+            <i class="fas fa-headset text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-center">Call Center Services</h3>
+          <p class="text-gray-600 mb-4">
+            Our professional call center team handles customer inquiries with expertise and care. We provide 24/7 support to ensure your customers always receive prompt and helpful assistance.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Customer support
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Information services
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Business referrals
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-16">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Choose the package that best fits your business needs and budget.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Standard Package -->
+        <div class="pricing-card bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6 border-b">
+            <h3 class="text-2xl font-bold mb-2">Standard Package</h3>
+            <div class="flex items-baseline">
+              <span class="text-4xl font-bold">ZMW 600</span>
+              <span class="text-gray-500 ml-2">/year</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Business listing in our directory
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Basic call center support
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Standard listing position
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Monthly performance report
+              </li>
+            </ul>
+            <button class="standard-package-btn w-full btn-red py-3 rounded-md font-medium">
+              Pay Now
+            </button>
+          </div>
+        </div>
+        
+        <!-- Priority Package -->
+        <div class="pricing-card bg-white rounded-lg shadow-lg overflow-hidden border-2 border-brand-red">
+          <div class="bg-brand-red p-6 text-white">
+            <h3 class="text-2xl font-bold mb-2">Priority Package</h3>
+            <div class="flex items-baseline">
+              <span class="text-4xl font-bold">ZMW 1,200</span>
+              <span class="text-gray-200 ml-2">/year</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <strong>Premium</strong> business listing
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Priority call center support
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <strong>First mention</strong> in your industry category
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Weekly performance reports
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-brand-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Dedicated account manager
+              </li>
+            </ul>
+            <button class="priority-package-btn w-full btn-red py-3 rounded-md font-medium">
+              Pay Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">Have questions? Get in touch with our team for more information.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-gray-800 p-8 rounded-lg">
+          <h3 class="text-xl font-bold mb-6">Get In Touch</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div class="h-10 w-10 rounded-full bg-brand-red flex items-center justify-center mr-4">
+                <i class="fab fa-whatsapp text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">WhatsApp</h4>
+                <a href="https://wa.me/260960000000" class="text-gray-300 hover:text-white transition-colors">+260 96 000 0000</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="h-10 w-10 rounded-full bg-brand-red flex items-center justify-center mr-4">
+                <i class="fas fa-envelope text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">Email</h4>
+                <a href="mailto:info@easycallzm.com" class="text-gray-300 hover:text-white transition-colors">info@easycallzm.com</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="h-10 w-10 rounded-full bg-brand-red flex items-center justify-center mr-4">
+                <i class="fas fa-map-marker-alt text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">Location</h4>
+                <p class="text-gray-300">Lusaka, Zambia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gray-800 p-8 rounded-lg">
+          <h3 class="text-xl font-bold mb-6">Send Us a Message</h3>
+          <form>
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium mb-2">Your Name</label>
+              <input type="text" id="name" class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-brand-red" placeholder="John Doe">
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+              <input type="email" id="email" class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-brand-red" placeholder="john@example.com">
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium mb-2">Message</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-brand-red" placeholder="Your message..."></textarea>
+            </div>
+            <button type="submit" class="w-full btn-red py-3 rounded-md font-medium">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-8">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <div class="flex items-center">
+            <span class="text-xl font-bold text-brand-red">EasyCall</span>
+            <span class="text-xl font-bold ml-1">Zambia</span>
+          </div>
+          <p class="text-gray-400 mt-2">Professional Call Center Services</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-red transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-red transition-colors">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-red transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-red transition-colors">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 text-center">
+        <p class="text-gray-400">&copy; 2025 EasyCall Zambia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Flutterwave Payment Integration -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flutterwave-v3/1.0.0/flutterwave.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          document.getElementById('mobile-menu').classList.add('hidden');
+        }
+      });
+    });
+
+    // Flutterwave Payment Configuration
+    function makePayment(amount, package) {
+      FlutterwaveCheckout({
+        public_key: "YOUR_FLUTTERWAVE_PUBLIC_KEY", // Replace with your actual Flutterwave public key
+        tx_ref: "EasyCall_" + Date.now(),
+        amount: amount,
+        currency: "ZMW",
+        payment_options: "card, mobilemoney",
+        redirect_url: "https://tally.so/r/your-form-link", // Replace with your actual Tally form link
+        customer: {
+          email: document.getElementById('email')?.value || "customer@example.com",
+          name: document.getElementById('name')?.value || "Customer"
+        },
+        customizations: {
+          title: "EasyCall Zambia",
+          description: package + " Package Subscription",
+          logo: "https://via.placeholder.com/150x150", // Replace with your actual logo URL
+        },
+      });
+    }
+
+    // Standard Package Payment Button
+    document.querySelector('.standard-package-btn').addEventListener('click', function() {
+      makePayment(600, "Standard (Annual)");
+    });
+
+    // Priority Package Payment Button
+    document.querySelector('.priority-package-btn').addEventListener('click', function() {
+      makePayment(1200, "Priority (Annual)");
+    });
+  </script>
+</body>
+</html>
